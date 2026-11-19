@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DecisionEcho — Documentation</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         max-width: 760px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #172B4D; }
+  h1 { font-size: 28px; } h2 { font-size: 20px; margin-top: 32px; }
+  code { background: #F4F5F7; padding: 1px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<h1>DecisionEcho — Documentation</h1>
+<p><em>Last updated: 19 November 2026</em></p>
+<p>DecisionEcho is a team decision-memory layer for Jira and Confluence,
+built on Atlassian Forge with a Rovo agent. It captures the decisions your
+team makes — the conclusion, the rationale, the alternatives that were
+rejected and why, the owner, and the source — into a structured store, so
+that people and AI agents can check <em>why</em> something was decided
+before they start work, instead of rebuilding what was already rejected.</p>
+
+<h2>Getting started</h2>
+<ol>
+  <li>Install DecisionEcho on your Jira / Confluence Cloud site from the
+      Atlassian Marketplace.</li>
+  <li>Open Rovo Chat and select the <strong>DecisionEcho</strong> agent.</li>
+  <li>Ask it to record a decision, or ask for a decision brief on any
+      issue (see below).</li>
+</ol>
+
+<h2>Recording a decision</h2>
+<p>Tell the agent about a decision in plain language, for example:
+<em>"Record a decision: Payments stay on the legacy gateway until Q3,
+because the contract runs until then. We rejected migrating to the new
+API now — it lacks refund webhooks. Owner: payments team. Linked issue:
+DEMO-1."</em></p>
+<p>The agent shows a confirmation before anything is written. Each record
+stores: title, conclusion, rationale, rejected alternatives with reasons,
+tags, linked issue keys, the author's display name, and a source URL.
+Recording is idempotent — repeating the same request does not create
+duplicates.</p>
+
+<h2>Decision briefs (before you start work)</h2>
+<p>Ask the agent: <em>"Give me the decision brief for issue DEMO-3."</em>
+The brief returns:</p>
+<ul>
+  <li><strong>Relevant decisions</strong> — active decisions that match the
+      issue, each with the keywords that matched, its rationale, and a
+      source link;</li>
+  <li><strong>Red lines</strong> — alternatives that were previously
+      rejected, with the reason they were rejected;</li>
+  <li><strong>Superseded warnings</strong> — decisions that were later
+      replaced, so you don't act on stale guidance;</li>
+  <li><strong>Teamwork Graph context</strong> — recent issue comments and
+      linked Atlassian Goals are read (as you, within your permissions)
+      and used to improve matching.</li>
+</ul>
+<p>For the richest brief, open the agent from the issue page so the issue
+context is attached.</p>
+
+<h2>Jira issue panel</h2>
+<p>Every Jira issue shows a <strong>DecisionEcho</strong> panel listing
+the decisions that govern that issue, with their status and source
+links — the same information as the agent brief, without asking.</p>
+
+<h2>Use from your own tools (MCP)</h2>
+<p>DecisionEcho exposes its record / search / brief tools through the
+Atlassian MCP endpoint for the app, so other MCP-compatible agents can
+query the team's decision memory before acting. Access requires OAuth
+authorization as a user of a site where the app is installed.</p>
+
+<h2>Data and privacy</h2>
+<p>Decision records are stored in Atlassian Forge app storage on your
+site. The app sends no data to the developer or any third-party server.
+See the <a href="privacy.html">Privacy Policy</a> for details.</p>
+
+<h2>Support</h2>
+<p>Support hours: Monday–Friday, 09:00–18:00 (Asia/Shanghai, GMT+8),
+target first response within 48 hours.
+Contact: <a href="mailto:chah69634@gmail.com">chah69634@gmail.com</a>.</p>
+</body>
+</html>
